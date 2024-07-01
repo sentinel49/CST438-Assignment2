@@ -62,16 +62,17 @@ public class SectionController {
 
         sectionRepository.save(s);
         return new SectionDTO(
-                s.getSectionNo(),
-                s.getTerm().getYear(),
-                s.getTerm().getSemester(),
-                s.getCourse().getCourseId(),
-                s.getSecId(),
-                s.getBuilding(),
-                s.getRoom(),
-                s.getTimes(),
-                (instructor!=null) ? instructor.getName() : "",
-                (instructor!=null) ? instructor.getEmail() : ""
+            s.getSectionNo(),
+            s.getTerm().getYear(),
+            s.getTerm().getSemester(),
+            s.getCourse().getCourseId(),
+            s.getCourse().getTitle(),
+            s.getSecId(),
+            s.getBuilding(),
+            s.getRoom(),
+            s.getTimes(),
+            (instructor!=null) ? instructor.getName() : "",
+            (instructor!=null) ? instructor.getEmail() : ""
         );
     }
 
@@ -131,16 +132,17 @@ public class SectionController {
                 instructor = userRepository.findByEmail(s.getInstructorEmail());
             }
             dto_list.add(new SectionDTO(
-                    s.getSectionNo(),
-                    s.getTerm().getYear(),
-                    s.getTerm().getSemester(),
-                    s.getCourse().getCourseId(),
-                    s.getSecId(),
-                    s.getBuilding(),
-                    s.getRoom(),
-                    s.getTimes(),
-                    (instructor!=null) ? instructor.getName() : "",
-                    (instructor!=null) ? instructor.getEmail() : ""
+                s.getSectionNo(),
+                s.getTerm().getYear(),
+                s.getTerm().getSemester(),
+                s.getCourse().getCourseId(),
+                s.getCourse().getTitle(),
+                s.getSecId(),
+                s.getBuilding(),
+                s.getRoom(),
+                s.getTimes(),
+                (instructor!=null) ? instructor.getName() : "",
+                (instructor!=null) ? instructor.getEmail() : ""
             ));
 
         }
@@ -165,16 +167,17 @@ public class SectionController {
                 instructor = userRepository.findByEmail(s.getInstructorEmail());
             }
             dto_list.add(new SectionDTO(
-                    s.getSectionNo(),
-                    s.getTerm().getYear(),
-                    s.getTerm().getSemester(),
-                    s.getCourse().getCourseId(),
-                    s.getSecId(),
-                    s.getBuilding(),
-                    s.getRoom(),
-                    s.getTimes(),
-                    (instructor!=null) ? instructor.getName() : "",
-                    (instructor!=null) ? instructor.getEmail() : ""
+                s.getSectionNo(),
+                s.getTerm().getYear(),
+                s.getTerm().getSemester(),
+                s.getCourse().getCourseId(),
+                s.getCourse().getTitle(),
+                s.getSecId(),
+                s.getBuilding(),
+                s.getRoom(),
+                s.getTimes(),
+                (instructor!=null) ? instructor.getName() : "",
+                (instructor!=null) ? instructor.getEmail() : ""
             ));
         }
         return dto_list;
@@ -189,16 +192,17 @@ public class SectionController {
         for (Section s : sections) {
             User instructor = userRepository.findByEmail(s.getInstructorEmail());
             dlist.add( new SectionDTO(
-                    s.getSectionNo(),
-                    s.getTerm().getYear(),
-                    s.getTerm().getSemester(),
-                    s.getCourse().getCourseId(),
-                    s.getSecId(),
-                    s.getBuilding(),
-                    s.getRoom(),
-                    s.getTimes(),
-                    (instructor!=null) ? instructor.getName() : "",
-                    (instructor!=null) ? instructor.getEmail() : ""
+                s.getSectionNo(),
+                s.getTerm().getYear(),
+                s.getTerm().getSemester(),
+                s.getCourse().getCourseId(),
+                s.getCourse().getTitle(),
+                s.getSecId(),
+                s.getBuilding(),
+                s.getRoom(),
+                s.getTimes(),
+                (instructor!=null) ? instructor.getName() : "",
+                (instructor!=null) ? instructor.getEmail() : ""
             ));
         }
         return dlist;
