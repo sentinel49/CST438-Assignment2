@@ -196,7 +196,7 @@ public class SectionController {
                     s.getTerm().getYear(),
                     s.getTerm().getSemester(),
                     s.getCourse().getCourseId(),
-                    s.getCourse().getTitle(),
+                    // s.getCourse().getTitle(),
                     s.getSecId(),
                     s.getBuilding(),
                     s.getRoom(),
