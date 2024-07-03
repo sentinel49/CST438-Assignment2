@@ -66,7 +66,6 @@ public class SectionController {
                 s.getTerm().getYear(),
                 s.getTerm().getSemester(),
                 s.getCourse().getCourseId(),
-                s.getCourse().getTitle(), // added
                 s.getSecId(),
                 s.getBuilding(),
                 s.getRoom(),
@@ -136,7 +135,6 @@ public class SectionController {
                     s.getTerm().getYear(),
                     s.getTerm().getSemester(),
                     s.getCourse().getCourseId(),
-                    s.getCourse().getTitle(), // added
                     s.getSecId(),
                     s.getBuilding(),
                     s.getRoom(),
@@ -171,7 +169,6 @@ public class SectionController {
                     s.getTerm().getYear(),
                     s.getTerm().getSemester(),
                     s.getCourse().getCourseId(),
-                    s.getCourse().getTitle(), // added
                     s.getSecId(),
                     s.getBuilding(),
                     s.getRoom(),
@@ -196,7 +193,6 @@ public class SectionController {
                     s.getTerm().getYear(),
                     s.getTerm().getSemester(),
                     s.getCourse().getCourseId(),
-                    s.getCourse().getTitle(), // added
                     s.getSecId(),
                     s.getBuilding(),
                     s.getRoom(),
