@@ -16,6 +16,8 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
 
+   @Autowired
+   EnrollmentRepository enrollmentRepository;
 
    // student gets transcript showing list of all enrollments
    // studentId will be temporary until Login security is implemented
@@ -23,13 +25,33 @@ public class StudentController {
    @GetMapping("/transcripts")
    public List<EnrollmentDTO> getTranscript(@RequestParam("studentId") int studentId) {
 
-       // TODO
+     List<Enrollment> enrollments = enrollmentRepository.findEnrollmentsByStudentIdOrderByTermId(studentId);
+     List<EnrollmentDTO> eDTOs = new ArrayList<>();
 
+     for (Enrollment e : enrollments) {
+       eDTOs.add(new EnrollmentDTO(
+           e.getEnrollmentId(),
+           e.getGrade(),
+           e.getUser().getId(),
+           e.getUser().getName(),
+           e.getUser().getEmail(),
+           e.getSection().getCourse().getCourseId(),
+           e.getSection().getCourse().getTitle(),
+           e.getSection().getSecId(),
+           e.getSection().getSectionNo(),
+           e.getSection().getBuilding(),
+           e.getSection().getRoom(),
+           e.getSection().getTimes(),
+           e.getSection().getCourse().getCredits(),
+           e.getSection().getTerm().getYear(),
+           e.getSection().getTerm().getSemester()
+       ));
+     }
        // list course_id, sec_id, title, credit, grade in chronological order
        // user must be a student
 	   // hint: use enrollment repository method findEnrollmentByStudentIdOrderByTermId
        // remove the following line when done
-       return null;
+       return eDTOs;
    }
 
     // student gets a list of their enrollments for the given year, semester
