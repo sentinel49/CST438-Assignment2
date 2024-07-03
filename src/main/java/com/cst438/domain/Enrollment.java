@@ -49,4 +49,12 @@ public class Enrollment {
     public void setSection(Section section) {
         this.section = section;
     }
+
+    public int getEnrollmentId() {
+        return enrollmentId;
+    }
+
+    public void setEnrollmentId(int enrollmentId) {
+        this.enrollmentId = enrollmentId;
+    }
 }
