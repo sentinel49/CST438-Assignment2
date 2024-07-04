@@ -27,10 +27,6 @@ public class Grade {
         return gradeId;
     }
 
-    public void setGradeId(int gradeId) {
-        this.gradeId = gradeId;
-    }
-
     public Assignment getAssignment() {
         return assignment;
     }
