@@ -155,7 +155,7 @@ public class StudentController {
     }
 
     // student drops a course
-    // TODO user must be student
+    // TODO user must be student (test?)
    @DeleteMapping("/enrollments/{enrollmentId}")
    public void dropCourse(@PathVariable("enrollmentId") int enrollmentId) {
 
