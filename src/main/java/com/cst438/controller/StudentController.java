@@ -34,7 +34,6 @@ public class StudentController {
      // list course_id, sec_id, title, credit, grade in chronological order
      // TODO user must be a student
      // hint: use enrollment repository method findEnrollmentByStudentIdOrderByTermId
-     // remove the following line when done
 
      List<Enrollment> enrollments = enrollmentRepository.findEnrollmentsByStudentIdOrderByTermId(studentId);
      List<EnrollmentDTO> eDTOs = new ArrayList<>();
