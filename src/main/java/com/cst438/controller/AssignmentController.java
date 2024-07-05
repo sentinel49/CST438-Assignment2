@@ -157,7 +157,15 @@ public class AssignmentController {
                 });
 
             // Create a GradeDTO and add it to the list
-            GradeDTO gradeDTO = new GradeDTO(grade.getGradeId(), grade.getScore(), enrollment.getUser().getName());
+            GradeDTO gradeDTO = new GradeDTO(
+                grade.getGradeId(),
+                enrollment.getUser().getName(),
+                enrollment.getUser().getEmail(),
+                assignment.getTitle(),
+                enrollment.getSection().getCourse().getCourseId(),
+                enrollment.getSection().getSecId(),
+                grade.getScore()
+            );
             gradeDTOs.add(gradeDTO);
         }
 
@@ -207,8 +215,10 @@ public class AssignmentController {
         List<Assignment> assignments = assignmentRepository.findByStudentIdAndYearAndSemesterOrderByDueDate(studentId, year, semester);
 
         for (Assignment assignment : assignments) {
+            //Fetch Enrollment ID
+            Enrollment enrollment = enrollmentRepository.findEnrollmentBySectionNoAndStudentId(assignment.getSection().getSectionNo(), studentId);
             // Fetch grade for the assignment and student
-            Grade grade = gradeRepository.findByEnrollmentIdAndAssignmentId(assignment.getSection().getSectionNo(), assignment.getAssignmentId())
+            Grade grade = gradeRepository.findByEnrollmentIdAndAssignmentId(enrollment.getEnrollmentId(), assignment.getAssignmentId())
                 .orElse(null);
 
             // Create AssignmentStudentDTO and add to list
@@ -216,6 +226,8 @@ public class AssignmentController {
                 assignment.getAssignmentId(),
                 assignment.getTitle(),
                 assignment.getDueDate(),
+                assignment.getSection().getCourse().getCourseId(),
+                assignment.getSection().getSecId(),
                 (grade != null) ? grade.getScore() : null
             );
             assignmentDTOs.add(assignmentDTO);
