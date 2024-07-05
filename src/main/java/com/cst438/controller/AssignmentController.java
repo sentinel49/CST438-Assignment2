@@ -36,6 +36,9 @@ public class AssignmentController {
     @Autowired
     GradeRepository gradeRepository;
 
+    @Autowired
+    SectionRepository sectionRepository;
+
 
     @GetMapping("/sections/{secNo}/assignments")
     public List<AssignmentDTO> getAssignments(
@@ -67,20 +70,31 @@ public class AssignmentController {
     public AssignmentDTO createAssignment(
         @RequestBody AssignmentDTO dto) {
 
-        // TODO remove the following line when done
-
+        // Create a new Assignment entity
         Assignment assignment = new Assignment();
         assignment.setTitle(dto.title());
+
+        // Convert the dueDate from String to Date Class
         assignment.setDueDate(Date.valueOf(dto.dueDate()));
-        Section section = new Section();
+
+        // Fetch the Section entity using secId from the DTO
+        Section section = sectionRepository.findById(dto.secId())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Section not found"));
+
+        // Set the Section in the Assignment entity
+        assignment.setSection(section);
+
+        // Save the assignment entity
         Assignment savedAssignment = assignmentRepository.save(assignment);
+
+        // Return the updated DTO with the new assignmentId
         return new AssignmentDTO(
             savedAssignment.getAssignmentId(),
-            savedAssignment.getTitle(),
-            savedAssignment.getDueDate().toString(),
-            savedAssignment.getSection().getCourse().getTitle(),
-            savedAssignment.getSection().getSecId(),
-            savedAssignment.getSection().getSectionNo()
+            dto.title(),
+            dto.dueDate(),
+            dto.courseId(),
+            dto.secId(),
+            dto.secNo()
         );
     }
 
@@ -98,6 +112,7 @@ public class AssignmentController {
 
         existingAssignment.setTitle(dto.title());
         existingAssignment.setDueDate(Date.valueOf(dto.dueDate()));
+
 
         Assignment updatedAssignment = assignmentRepository.save(existingAssignment);
 
