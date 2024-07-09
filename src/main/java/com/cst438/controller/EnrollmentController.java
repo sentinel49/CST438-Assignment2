@@ -77,16 +77,15 @@ public class EnrollmentController {
     // instructor uploads enrollments with the final grades for the section
     // user must be instructor for the section
     @PutMapping("/enrollments")
-    public void updateEnrollmentGrade(@RequestBody List<EnrollmentDTO> dto_list) {
-        // TODO
-        // For each EnrollmentDTO in the list
-        //  find the Enrollment entity using enrollmentId
-        //  update the grade and save back to database
-        for (EnrollmentDTO e : dto_list) {
-            Enrollment enrollment = enrollmentRepository.findById(e.enrollmentId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
-            enrollment.setGrade(e.grade());
-            enrollmentRepository.save(enrollment);
+    public void updateEnrollmentGrade(@RequestBody List<EnrollmentDTO> dlist) {
+        for (EnrollmentDTO d : dlist) {
+            Enrollment e = enrollmentRepository.findById(d.enrollmentId()).orElse(null);
+            if (e==null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "enrollment not found "+d.enrollmentId());
+            } else {
+                e.setGrade(d.grade());
+                enrollmentRepository.save(e);
+            }
         }
     }
 }
