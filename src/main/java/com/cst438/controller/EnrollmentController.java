@@ -53,9 +53,9 @@ public class EnrollmentController {
             dto_list.add(new EnrollmentDTO(
                     e.getEnrollmentId(),
                     e.getGrade(),
-                    e.getUser().getId(),
-                    e.getUser().getName(),
-                    e.getUser().getEmail(),
+                    e.getStudent().getId(),
+                    e.getStudent().getName(),
+                    e.getStudent().getEmail(),
                     e.getSection().getCourse().getCourseId(),
                     e.getSection().getCourse().getTitle(),
                     e.getSection().getSecId(),

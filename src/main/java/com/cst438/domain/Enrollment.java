@@ -34,11 +34,11 @@ public class Enrollment {
         this.grade = grade;
     }
 
-    public User getUser() {
+    public User getStudent() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setStudent(User user) {
         this.user = user;
     }
 
